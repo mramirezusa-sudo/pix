@@ -1,0 +1,1981 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- =========================================
+       META / SEO
+  ========================================== -->
+  <meta charset="UTF-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
+  />
+  <title>PixelWall Labs | Next-Gen Wall & Floor Printing in Jacksonville, FL</title>
+  <meta
+    name="description"
+    content="Next-generation wall printing, floor graphics, and visual branding solutions in Jacksonville, FL. Precision printing technology for homes, retail, offices, and commercial spaces."
+  />
+  <meta name="theme-color" content="#090909" />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://yourdomain.com/" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="PixelWall Labs" />
+  <meta
+    property="og:description"
+    content="Next-generation wall printing, floor graphics, and visual branding solutions in Jacksonville, FL."
+  />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="PixelWall Labs" />
+  <meta property="og:url" content="https://yourdomain.com/" />
+  <meta property="og:image" content="https://yourdomain.com/images/branding.jpg" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="PixelWall Labs" />
+  <meta
+    name="twitter:description"
+    content="Next-generation wall printing, floor graphics, and visual branding solutions in Jacksonville, FL."
+  />
+  <meta name="twitter:image" content="https://yourdomain.com/images/branding.jpg" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Preload Hero Image -->
+  <link rel="preload" as="image" href="images/wall.jpg" />
+
+  <style>
+    /* =========================================
+       1) DESIGN TOKENS
+    ========================================= */
+    :root {
+      --bg: #090909;
+      --bg-elevated: #101113;
+      --bg-soft: #16181c;
+      --panel: rgba(255, 255, 255, 0.03);
+      --panel-strong: rgba(255, 255, 255, 0.05);
+
+      --text: #ffffff;
+      --muted: #cfd3da;
+      --muted-2: #949aa5;
+
+      --border: rgba(255, 255, 255, 0.08);
+      --border-strong: rgba(255, 255, 255, 0.14);
+
+      --accent: #ff7a33;
+      --accent-hover: #ff8c4d;
+      --accent-soft: rgba(255, 122, 51, 0.12);
+      --accent-glow: rgba(255, 122, 51, 0.22);
+
+      --max-width: 1200px;
+      --radius: 18px;
+      --radius-lg: 28px;
+
+      --shadow-sm: 0 10px 24px rgba(0, 0, 0, 0.16);
+      --shadow-md: 0 18px 38px rgba(0, 0, 0, 0.24);
+      --shadow-lg: 0 32px 90px rgba(0, 0, 0, 0.42);
+
+      --section-pad: clamp(84px, 8vw, 118px);
+      --nav-height: 78px;
+
+      --transition-fast: 0.2s ease;
+      --transition-med: 0.28s ease;
+      --transition-slow: 0.45s ease;
+    }
+
+    /* =========================================
+       2) RESET / BASE
+    ========================================= */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Inter", Arial, Helvetica, sans-serif;
+      line-height: 1.5;
+      color: var(--text);
+      background:
+      radial-gradient(circle at top, rgba(255, 122, 51, 0.06), transparent 24%),
+      linear-gradient(180deg, #0b0b0c 0%, #090909 100%);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      background:
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: 120px 120px;
+      mask-image: linear-gradient(180deg, rgba(0,0,0,0.16), rgba(0,0,0,0));
+      opacity: 0.12;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    button,
+    input,
+    textarea {
+      font: inherit;
+    }
+
+    ::selection {
+      background: rgba(255, 122, 51, 0.24);
+      color: #fff;
+    }
+
+    :focus-visible {
+      outline: 3px solid rgba(255, 122, 51, 0.9);
+      outline-offset: 2px;
+    }
+
+    /* =========================================
+       3) LAYOUT
+    ========================================= */
+    .container {
+      width: min(100% - 32px, var(--max-width));
+      margin-inline: auto;
+    }
+
+    .grid {
+      display: grid;
+      gap: 24px;
+    }
+
+    .grid-3 {
+      grid-template-columns: 1fr;
+    }
+
+    section {
+      padding: var(--section-pad) 0;
+      scroll-margin-top: calc(var(--nav-height) + 18px);
+    }
+
+    #services {
+      padding-top: 22px;
+      padding-bottom: 72px;
+    }
+
+    #pricing {
+      padding-top: 64px;
+      padding-bottom: 88px;
+    }
+
+    #process {
+      padding-top: 84px;
+      padding-bottom: 92px;
+    }
+
+    #quote {
+      padding-top: 24px;
+      padding-bottom: 96px;
+    }
+
+    /* =========================================
+       4) ACCESSIBILITY
+    ========================================= */
+    .skip-link {
+      position: absolute;
+      top: -100px;
+      left: 12px;
+      z-index: 1000;
+      padding: 10px 14px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 700;
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .skip-link:focus {
+      top: 12px;
+    }
+
+    /* =========================================
+       5) HEADER / NAV
+    ========================================= */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(9, 9, 9, 0.74);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      -webkit-backdrop-filter: blur(14px);
+      backdrop-filter: blur(14px);
+    }
+
+    .nav {
+      min-height: var(--nav-height);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      flex-shrink: 0;
+      padding: 8px 0;
+      text-decoration: none;
+    }
+
+    .brand-logo {
+      width: clamp(150px, 16vw, 196px);
+      height: auto;
+      object-fit: contain;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+
+    .nav-links a {
+      position: relative;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      transition: color var(--transition-fast), opacity var(--transition-fast);
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -10px;
+      width: 100%;
+      height: 1px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transform-origin: center;
+      transition: transform var(--transition-med);
+      opacity: 0.9;
+    }
+
+    .nav-links a:hover,
+    .nav-links a:focus-visible {
+      color: var(--text);
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a:focus-visible::after {
+      transform: scaleX(1);
+    }
+
+    /* =========================================
+       6) TYPOGRAPHY
+    ========================================= */
+    h1,
+    h2 {
+      font-family: "Inter", Arial, Helvetica, sans-serif;
+    }
+
+    h1,
+    h2,
+    h3 {
+      margin: 0;
+    }
+
+    h1 {
+      max-width: 12ch;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      line-height: 0.95;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+      text-wrap: balance;
+      text-shadow: 0 10px 30px rgba(0, 0, 0, 0.22);
+    }
+
+    h2 {
+      font-size: clamp(2rem, 4vw, 3.15rem);
+      line-height: 0.98;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    h3 {
+      font-size: 1.12rem;
+      margin-bottom: 8px;
+      letter-spacing: -0.01em;
+    }
+
+    .section-eyebrow {
+      display: inline-block;
+      margin-bottom: 14px;
+      color: var(--accent);
+      font-size: 0.78rem;
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      opacity: 0.95;
+    }
+
+    .section-head {
+      text-align: center;
+      margin-bottom: 46px;
+    }
+
+    .section-head p {
+      margin: 10px auto 0;
+      max-width: 58ch;
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.72;
+    }
+
+    /* =========================================
+       7) BUTTONS
+    ========================================= */
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 50px;
+      padding: 0 22px;
+      border: 1px solid transparent;
+      border-radius: 999px;
+      cursor: pointer;
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      transition:
+      transform var(--transition-fast),
+      background-color var(--transition-fast),
+      border-color var(--transition-fast),
+      box-shadow var(--transition-fast),
+      opacity var(--transition-fast),
+      color var(--transition-fast);
+    }
+
+    .button:focus-visible {
+      outline: 3px solid var(--accent);
+      outline-offset: 3px;
+    }
+
+    .button[aria-disabled="true"] {
+      opacity: 0.55;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+
+    .btn {
+      color: #fff;
+      background: linear-gradient(180deg, #ff8a47 0%, #ff7330 100%);
+      border-color: rgba(255,255,255,0.05);
+      box-shadow:
+      0 12px 24px rgba(255, 122, 51, 0.22),
+      inset 0 1px 0 rgba(255,255,255,0.18);
+    }
+
+    .btn:hover,
+    .btn:focus-visible {
+      background: linear-gradient(180deg, #ff9557 0%, #ff7a33 100%);
+      transform: translateY(-1px);
+      box-shadow:
+      0 14px 28px rgba(255, 122, 51, 0.28),
+      0 0 0 6px rgba(255, 122, 51, 0.12);
+    }
+
+    .btn-secondary {
+      color: #fff;
+      background: rgba(255,255,255,0.04);
+      border-color: rgba(255,255,255,0.14);
+      box-shadow:
+      0 8px 20px rgba(0, 0, 0, 0.12),
+      inset 0 1px 0 rgba(255,255,255,0.04);
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
+    }
+
+    .btn-secondary:hover,
+    .btn-secondary:focus-visible {
+      background: rgba(255,255,255,0.08);
+      border-color: rgba(255,255,255,0.22);
+      transform: translateY(-1px);
+    }
+
+/* =========================================
+   8) HERO (MORE BACKGROUND VISIBLE)
+========================================= */
+    .hero {
+      min-height: auto;
+      display: flex;
+      align-items: center;
+      padding: 10px 0 34px; /* slightly tighter */
+    }
+
+    .hero-grid {
+      display: grid;
+      gap: 18px;
+      align-items: center;
+    }
+
+    .hero-visual {
+      position: relative;
+      width: 100%;
+      min-height: 390px; /* smaller overall hero */
+      overflow: hidden;
+      isolation: isolate;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--radius-lg);
+      background:
+      radial-gradient(circle at top left, rgba(255, 122, 51, 0.08), transparent 28%),
+      linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0)),
+      #0f1115;
+      box-shadow:
+      var(--shadow-lg),
+      inset 0 1px 0 rgba(255,255,255,0.05);
+    }
+
+    .hero-visual::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      background:
+	  linear-gradient(
+      90deg,
+      rgba(6, 7, 10, 0.72) 0%,
+      rgba(6, 7, 10, 0.42) 24%,
+      rgba(10, 12, 16, 0.12) 48%,
+      rgba(10, 12, 16, 0.02) 100%
+    );
+    }
+
+    .hero-visual::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      pointer-events: none;
+      background:
+      radial-gradient(circle at 15% 28%, rgba(255, 122, 51, 0.08), transparent 20%),
+      linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.10) 100%);
+    }
+
+    #printCanvas {
+      position: absolute;
+      inset: 0;
+      display: block;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      will-change: transform;
+      animation: none;
+      object-fit: cover;
+      object-position: center top;
+    }
+
+    .hero-copy {
+      position: relative;
+      z-index: 3;
+      max-width: 460px; /* narrower panel */
+      margin: 16px;
+      padding: 18px 18px 18px; /* less padding */
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 18px;
+      background:
+      linear-gradient(180deg, rgba(10,12,16,0.48), rgba(10,12,16,0.16));
+      box-shadow:
+      0 14px 28px rgba(0,0,0,0.20),
+      inset 0 1px 0 rgba(255,255,255,0.04);
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
+    }
+
+    .hero-copy::after,
+    .card::after,
+    .service-card::after,
+    .form-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      pointer-events: none;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+    }
+
+    .hero-copy h1 {
+      max-width: 9ch; /* tighter line width */
+      font-size: clamp(1.85rem, 2.8vw, 2.9rem); /* smaller headline */
+      line-height: 0.92;
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      text-transform: uppercase;
+      text-wrap: balance;
+      text-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    }
+
+    .hero-copy p {
+      margin: 12px 0 0;
+      max-width: 28ch;
+      font-size: 0.92rem;
+      line-height: 1.52;
+      color: rgba(255,255,255,0.82);
+      text-shadow: 0 2px 18px rgba(0,0,0,0.22);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .hero-actions .button {
+      min-height: 46px;
+      padding: 0 18px;
+      font-size: 0.78rem;
+      letter-spacing: 0.14em;
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .hero-stat {
+      padding-top: 8px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .stat-value {
+      display: block;
+      font-size: 0.88rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: #fff;
+    }
+
+    .stat-label {
+      display: block;
+      margin-top: 4px;
+      font-size: 0.58rem;
+      line-height: 1.35;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted-2);
+    }
+
+    /* =========================================
+       9) SHARED CARDS
+    ========================================= */
+    .card {
+      position: relative;
+      padding: 28px;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 22px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.035), rgba(255,255,255,0.018));
+      box-shadow:
+        0 18px 36px rgba(0,0,0,0.22),
+        inset 0 1px 0 rgba(255,255,255,0.04);
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    /* =========================================
+       10) SERVICES
+    ========================================= */
+    .service-card {
+      position: relative;
+      min-height: 220px;
+      padding: 0;
+      overflow: hidden;
+      isolation: isolate;
+      aspect-ratio: 1 / 1;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 24px;
+      background: #101317;
+      box-shadow:
+       0 22px 46px rgba(0,0,0,0.3),
+       inset 0 1px 0 rgba(255,255,255,0.03);
+    }
+
+    .service-card img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.7) saturate(0.98);
+      transition:
+      transform var(--transition-slow),
+      filter var(--transition-slow);
+    }
+
+    .service-card:hover img,
+    .service-card:focus-visible img {
+      transform: scale(1.05);
+      filter: brightness(0.82) saturate(1.04);
+    }
+
+    .service-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      display: flex;
+      align-items: end;
+      padding: 24px 26px 24px;
+      background:
+      linear-gradient(
+      to top,
+      rgba(6, 7, 10, 0.96) 0%,
+      rgba(6, 7, 10, 0.56) 48%,
+      rgba(6, 7, 10, 0.06) 100%
+      );
+      transition: opacity var(--transition-med);
+    }
+
+    .service-content {
+      width: 100%;
+      max-width: 28ch;
+      text-align: left;
+    }
+
+    .service-code {
+      display: block;
+      margin: 0;
+      min-height: 1em;
+      color: var(--accent);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      line-height: 1;
+      opacity: 0.95;
+    }
+
+    .service-content h3 {
+      margin: 4px 0 14px;
+      min-height: 2.1em;
+      display: flex;
+      align-items: flex-start;
+      font-size: 1.32rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+      line-height: 1.02;
+    }
+
+    .service-content p {
+      margin: 0;
+      min-height: 6em; /* key fix for Surface 03 */
+      max-width: 23ch;
+      color: rgba(255,255,255,0.8);
+      line-height: 1.5;
+    }
+
+    /* =========================================
+       11) PRICING
+    ========================================= */
+    .pricing-card {
+      position: relative;
+      overflow: hidden;
+      padding-top: 54px;
+    }
+
+    .pricing-label {
+      position: absolute;
+      top: 20px;
+      left: 22px;
+      color: var(--muted-2);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .pricing-card h3 {
+      font-size: 1.08rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .pricing-card-featured {
+      border-color: rgba(255, 122, 51, 0.32);
+      box-shadow:
+      0 24px 48px rgba(0, 0, 0, 0.3),
+      0 0 0 1px rgba(255, 122, 51, 0.08),
+      inset 0 1px 0 rgba(255,255,255,0.04);
+    }
+
+    .pricing-card-featured::before {
+      content: "Recommended";
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: rgba(255, 122, 51, 0.12);
+      border: 1px solid rgba(255, 122, 51, 0.22);
+      color: #fff;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      line-height: 1;
+    }
+
+    .price {
+      display: inline-block;
+      margin: 6px 0 14px;
+      color: #fff;
+      font-size: 2rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+    }
+
+    .price span {
+      color: var(--accent);
+    }
+
+    .price-note {
+      margin-top: 16px;
+      text-align: center;
+      font-size: 0.96rem;
+      color: var(--muted-2);
+    }
+
+    /* =========================================
+       12) PROCESS
+    ========================================= */
+    .process-card {
+      position: relative;
+      min-height: 258px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+      padding: 30px;
+    }
+
+    .process-icon {
+      width: 66px;
+      height: 66px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 18px;
+      border: 1px solid rgba(255, 122, 51, 0.2);
+      border-radius: 20px;
+      color: var(--accent);
+      background:
+      linear-gradient(180deg, rgba(255, 122, 51, 0.12), rgba(255, 122, 51, 0.05));
+      box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.04),
+      0 8px 20px rgba(255, 122, 51, 0.08);
+    }
+
+    .process-icon svg {
+      display: block;
+      width: 30px;
+      height: 30px;
+    }
+
+    .process-step {
+      margin-bottom: 10px;
+      color: var(--accent);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .process-card h3 {
+      font-size: 1.12rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      margin: 0 0 12px;
+      line-height: 1.25;
+    }
+
+    .process-card p {
+      margin: 0;
+      max-width: 30ch;
+      font-size: 1rem;
+      line-height: 1.7;
+      color: var(--muted);
+    }
+
+    /* =========================================
+       13) QUOTE FORM
+    ========================================= */
+    .quote-wrap {
+      max-width: 860px;
+      margin-inline: auto;
+    }
+
+    .form-card {
+      position: relative;
+      text-align: left;
+      padding: 32px;
+      border-radius: 26px;
+      background:
+      linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.018));
+    }
+
+    .form-label {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .form-help {
+      margin: 0 0 14px;
+      font-size: 0.98rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 176px;
+      padding: 18px;
+      resize: vertical;
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 18px;
+      outline: none;
+      background: rgba(10, 12, 16, 0.94);
+      color: var(--text);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.03);
+      transition:
+      border-color var(--transition-fast),
+      box-shadow var(--transition-fast),
+      background-color var(--transition-fast);
+    }
+
+    textarea::placeholder {
+      color: #8c95a2;
+    }
+
+    textarea:focus {
+      border-color: rgba(255, 122, 51, 0.65);
+      box-shadow:
+      0 0 0 4px rgba(255, 122, 51, 0.12),
+      inset 0 1px 0 rgba(255,255,255,0.03);
+      background: rgba(12, 14, 18, 0.97);
+    }
+
+    .form-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .form-status {
+      min-height: 24px;
+      margin-top: 12px;
+      font-size: 0.96rem;
+      color: var(--muted);
+    }
+
+    .contact-note {
+      margin-top: 20px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      font-size: 0.96rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .contact-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .contact-actions .button {
+      flex: 1 1 140px;
+      justify-content: center;
+    }
+
+    /* =========================================
+       14) FOOTER
+    ========================================= */
+    .site-footer {
+      padding: 32px 0 42px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      color: var(--muted-2);
+      font-size: 0.95rem;
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px 24px;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+    }
+
+    .footer-links a {
+      color: var(--muted-2);
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      transition: color var(--transition-fast);
+    }
+
+    .footer-links a:hover,
+    .footer-links a:focus-visible {
+      color: var(--text);
+    }
+
+    /* =========================================
+       15) ANIMATION
+    ========================================= */
+    @keyframes subtleZoom {
+      from { transform: scale(1); }
+      to   { transform: scale(1.05); }
+    }
+
+    /* =========================================
+       16) RESPONSIVE
+    ========================================= */
+    @media (min-width: 768px) {
+      .grid-3 {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 767px) {
+      :root {
+        --nav-height: 92px;
+        --section-pad: clamp(72px, 10vw, 102px);
+      }
+
+      .nav {
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        padding: 12px 0;
+      }
+
+      .brand-logo {
+        width: clamp(144px, 48vw, 184px);
+      }
+
+      .nav-links {
+        gap: 14px;
+      }
+
+      .hero {
+        padding-top: 0;
+        padding-bottom: 24px;
+      }
+
+      .hero-visual {
+        min-height: 76vh;
+        border-radius: 0; /* remove boxed look */
+        border: none;
+      }
+
+      .hero-visual::before {
+        background:
+        linear-gradient(
+        180deg,
+        rgba(6, 7, 10, 0.58) 0%,
+        rgba(6, 7, 10, 0.2) 34%,
+        rgba(6, 7, 10, 0.88) 100%
+        );
+      }
+
+      .hero-copy {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        max-width: none;
+        margin: 0;
+        padding: 16px 14px 18px;
+        border-radius: 20px 20px 0 0;
+        background:
+        linear-gradient(
+        180deg,
+        rgba(10,12,16,0) 0%,
+        rgba(10,12,16,0.68) 60%,
+        rgba(10,12,16,0.92) 100%
+        );
+        box-shadow: 0 -20px 40px rgba(0, 0, 0, 0.30);
+        -webkit-backdrop-filter: none;
+        backdrop-filter: none;
+      }
+
+      .hero-copy h1 {
+        max-width: 100%;
+        font-size: clamp(1.6rem, 6vw, 2.2rem);
+        line-height: 0.96;
+      }
+
+      .hero-copy p {
+        max-width: 100%;
+        font-size: 0.9rem;
+        line-height: 1.5;
+      }
+
+      .hero-actions {
+        margin-top: 14px;
+      }  
+
+      .hero-actions .btn-secondary {
+        opacity: 0.85;
+      }
+ 
+      .hero .container {
+        width: 100%;
+        margin: 0;
+      }
+
+      .hero-actions .button {
+        min-height: 46px;
+      }
+
+      .form-actions .button {
+        min-height: 48px;
+		width: 100%;
+      }
+
+      .hero-stats {
+        display: none;
+      }
+
+      .service-card {
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      .service-card:focus-visible {
+        outline: 3px solid var(--accent);
+        outline-offset: 4px;
+      }
+
+      .service-card.is-image-focus .service-overlay {
+        opacity: 0;
+      }
+
+      .service-card.is-image-focus img {
+        filter: brightness(1) saturate(1.04);
+        transform: scale(1.02);
+      }
+
+      .service-overlay {
+        padding: 20px;
+      }
+
+      .service-content h3 {
+        font-size: 1.22rem;
+        line-height: 1.18;
+      }
+
+      .service-content p {
+        max-width: 20ch;
+        line-height: 1.45;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      /* Mobile-only canvas zoom effect */
+
+      #printCanvas {
+        animation: subtleZoom 20s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate;
+      }
+    }
+
+    /* =========================================
+       17) REDUCED MOTION
+    ========================================= */
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      #printCanvas {
+        animation: none !important;
+      }
+
+      .button,
+      .service-card img,
+      .service-overlay,
+      .nav-links a,
+      .footer-links a,
+      textarea {
+      transition: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- =========================================
+       HEADER
+  ========================================== -->
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="#top" aria-label="PixelWall Labs home">
+        <img
+          src="logo.svg"
+          alt="PixelWall Labs logo"
+          class="brand-logo"
+          width="354"
+          height="104"
+          fetchpriority="high"
+        />
+      </a>
+
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="#services">Services</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#process">Process</a>
+        <a href="#quote">Quote</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- =========================================
+       MAIN
+  ========================================== -->
+  <main id="main">
+    <!-- HERO -->
+    <section class="hero" id="top">
+      <div class="container hero-grid">
+        <div class="hero-visual">
+          <canvas id="printCanvas" aria-hidden="true"></canvas>
+
+          <div class="hero-copy">
+            <div class="section-eyebrow">Next-Generation Print Technology</div>
+            <h1>Print directly on real surfaces</h1>
+            <p>
+              Advanced wall printing, floor graphics, and branded environments
+              built with next-gen print systems for homes, retail, offices, and
+              commercial interiors.
+            </p>
+
+            <div class="hero-actions">
+              <a href="#quote" class="button btn">Get a Quote</a>
+              <a href="#services" class="button btn-secondary">Explore Services</a>
+            </div>
+
+            <div class="hero-stats" aria-label="Key highlights">
+              <div class="hero-stat">
+                <span class="stat-value">High-Res</span>
+                <span class="stat-label">Precision Output</span>
+              </div>
+              <div class="hero-stat">
+                <span class="stat-value">Walls + Floors</span>
+                <span class="stat-label">Interior + Exterior</span>
+              </div>
+              <div class="hero-stat">
+                <span class="stat-value">Fast Turnaround</span>
+                <span class="stat-label">Project Delivery</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services" aria-labelledby="services-title">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-eyebrow">Technology Meets Design</div>
+          <h2 id="services-title">Services</h2>
+          <p>
+            Precision-driven visual printing solutions designed to transform
+            interior surfaces into memorable, high-impact brand experiences.
+          </p>
+        </div>
+
+        <div class="grid grid-3">
+          <article class="service-card" aria-label="Wall Printing service card">
+            <img
+              src="images/wall2.jpg"
+              alt="Custom wall printing mural"
+              loading="lazy"
+              decoding="async"
+              width="1200"
+              height="900"
+            />
+            <div class="service-overlay">
+              <div class="service-content">
+                <span class="service-code">Surface 01</span>
+                <h3>Wall Printing</h3>
+                <p>
+                  High-resolution murals for homes, offices, retail spaces, and
+                  feature walls with clean detail and bold visual impact.
+                </p>
+              </div>
+            </div>
+          </article>
+
+          <article class="service-card" aria-label="Brand Systems service card">
+            <img
+              src="images/branding.jpg"
+              alt="Commercial branding installation"
+              loading="lazy"
+              decoding="async"
+              width="1200"
+              height="900"
+            />
+            <div class="service-overlay">
+              <div class="service-content">
+                <span class="service-code">Surface 02</span>
+                <h3>Brand Systems</h3>
+                <p>
+                  Environmental branding, interior logo applications, and
+                  commercial graphics designed for modern spaces.
+                </p>
+              </div>
+            </div>
+          </article>
+
+          <article class="service-card" aria-label="Floor Printing service card">
+            <img
+              src="images/floor.jpg"
+              alt="Custom floor printing design"
+              loading="lazy"
+              decoding="async"
+              width="1200"
+              height="900"
+            />
+            <div class="service-overlay">
+              <div class="service-content">
+                <span class="service-code">Surface 03</span>
+                <h3>Floor Printing</h3>
+                <p>
+                  Durable floor graphics built for storytelling, navigation, and
+                  bold branded experiences.
+                </p>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRICING -->
+    <section id="pricing" aria-labelledby="pricing-title">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-eyebrow">Project Investment</div>
+          <h2 id="pricing-title">Pricing</h2>
+          <p>
+            Transparent starting ranges to help you estimate your project
+            quickly and confidently.
+          </p>
+        </div>
+
+        <div class="grid grid-3">
+          <article class="card pricing-card">
+            <div class="pricing-label">Package 01</div>
+            <h3>Basic</h3>
+            <div class="price"><span>$</span>8 / SQ FT</div>
+            <p>Simple prints, standard surfaces, and minimal prep work.</p>
+          </article>
+
+          <article class="card pricing-card pricing-card-featured">
+            <div class="pricing-label">Package 02</div>
+            <h3>Standard</h3>
+            <div class="price"><span>$</span>12 / SQ FT</div>
+            <p>
+              The most popular option for full-color, high-detail projects with
+              a refined final finish.
+            </p>
+          </article>
+
+          <article class="card pricing-card">
+            <div class="pricing-label">Package 03</div>
+            <h3>Premium</h3>
+            <div class="price"><span>$</span>18 / SQ FT</div>
+            <p>
+              Elevated execution for specialty branding, larger installs, and
+              more advanced project requirements.
+            </p>
+          </article>
+        </div>
+
+        <p class="price-note">
+          Final pricing may vary based on surface condition, project size,
+          location, and artwork complexity.
+        </p>
+      </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section id="process" aria-labelledby="process-title">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-eyebrow">Simple Workflow</div>
+          <h2 id="process-title">Process</h2>
+          <p>A clean, modern workflow from concept to installation.</p>
+        </div>
+
+        <div class="grid grid-3">
+          <article class="card process-card">
+            <div class="process-icon" aria-hidden="true">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.7"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M22 2L11 13"></path>
+                <path d="M22 2L15 22L11 13L2 9L22 2Z"></path>
+              </svg>
+            </div>
+            <div class="process-step">Step 01</div>
+            <h3>Send Details</h3>
+            <p>
+              Tell us what you want printed, where it will be installed, and
+              the visual direction you want to achieve.
+            </p>
+          </article>
+
+          <article class="card process-card">
+            <div class="process-icon" aria-hidden="true">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.9"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <path d="M14 2v6h6"></path>
+                <path d="M8 13h8"></path>
+                <path d="M8 17h5"></path>
+              </svg>
+            </div>
+            <div class="process-step">Step 02</div>
+            <h3>Review Quote</h3>
+            <p>
+              We review your scope and provide a tailored estimate based on
+              size, surface, complexity, and installation requirements.
+            </p>
+          </article>
+
+          <article class="card process-card">
+            <div class="process-icon" aria-hidden="true">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.9"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M6 9V4h12v5"></path>
+                <rect x="4" y="9" width="16" height="8" rx="2"></rect>
+                <path d="M8 17h8v3H8z"></path>
+                <path d="M8 13h.01"></path>
+              </svg>
+            </div>
+            <div class="process-step">Step 03</div>
+            <h3>Print &amp; Install</h3>
+            <p>
+              We execute with precision and deliver a high-impact final result
+              built for modern interiors.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- QUOTE -->
+    <section id="quote" aria-labelledby="quote-title">
+      <div class="container quote-wrap">
+        <div class="section-head">
+          <div class="section-eyebrow">Start Your Project</div>
+          <h2 id="quote-title">Get an Instant Quote</h2>
+          <p>
+            Describe your project and send it instantly via SMS, Email, or WhatsApp.
+          </p>
+        </div>
+
+        <div class="card form-card">
+          <form id="quoteForm" novalidate>
+		    <!-- NEW INPUT FIELDS -->
+<div class="grid" style="margin-bottom:16px;">
+  <div>
+    <label class="form-label">Full Name</label>
+    <input type="text" id="name" required />
+  </div>
+
+  <div>
+    <label class="form-label">Email</label>
+    <input type="email" id="email" required />
+  </div>
+
+  <div>
+    <label class="form-label">Phone</label>
+    <input type="tel" id="phone" />
+  </div>
+
+  <div>
+    <label class="form-label">Surface Type</label>
+    <select id="surface">
+      <option value="">Select</option>
+      <option value="wall">Wall</option>
+      <option value="floor">Floor</option>
+      <option value="other">Other</option>
+    </select>
+  </div>
+
+  <div>
+    <label class="form-label">Width (ft)</label>
+    <input type="number" id="width" />
+  </div>
+
+  <div>
+    <label class="form-label">Height (ft)</label>
+    <input type="number" id="height" />
+  </div>
+</div>
+            <label class="form-label" for="details">Project Details</label>
+            <p id="details-help" class="form-help">
+              Include the surface type, approximate size, location, and design idea.
+            </p>
+
+            <textarea
+              id="details"
+              name="details"
+              rows="7"
+              required
+              aria-describedby="details-help"
+              placeholder="Example: I want a custom wall mural for a 12 ft x 8 ft office wall in Jacksonville. Full-color brand design with logo and abstract background."
+            ></textarea>
+
+            <div class="form-actions">
+<button type="submit" class="button btn">Get Instant Estimate</button>
+            </div>
+
+            <div class="contact-actions">
+              <a
+                id="smsLink"
+                class="button btn-secondary"
+                href="#"
+                aria-disabled="true"
+              >
+                SMS
+              </a>
+
+              <a
+                id="emailLink"
+                class="button btn-secondary"
+                href="#"
+                aria-disabled="true"
+              >
+                Email
+              </a>
+
+              <a
+                id="waLink"
+                class="button btn-secondary"
+                href="#"
+                aria-disabled="true"
+              >
+                WhatsApp
+              </a>
+            </div>
+
+            <p
+              id="quoteStatus"
+              class="form-status"
+              role="status"
+              aria-live="polite"
+            ></p>
+          </form>
+<div id="aiResult" style="margin-top:20px;"></div>
+          <div class="contact-note">
+            Your message will be pre-filled. Choose your preferred method to send it instantly.
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- =========================================
+       FOOTER
+  ========================================== -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>© <span id="year"></span> PixelWall Labs LLC. All rights reserved.</div>
+
+      <div class="footer-links">
+        <a href="#services">Services</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#quote">Quote</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (() => {
+      "use strict";
+
+      /* =========================================
+         1) SETTINGS
+      ========================================= */
+      const BUSINESS_PHONE = "19040000000"; // Replace with real number
+      const BUSINESS_EMAIL = "youremail@example.com"; // Replace with real email
+      const HERO_IMAGE_SRC = "images/wall.jpg";
+
+      /* =========================================
+         2) DOM HELPERS
+      ========================================= */
+      const $ = (id) => document.getElementById(id);
+
+      const form = $("quoteForm");
+      const details = $("details");
+      const smsLink = $("smsLink");
+      const emailLink = $("emailLink");
+      const waLink = $("waLink");
+      const status = $("quoteStatus");
+      const year = $("year");
+      const canvas = $("printCanvas");
+
+      const serviceCards = document.querySelectorAll(".service-card");
+      const mobileQuery = window.matchMedia("(max-width: 767px)");
+      const reduceMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+      /* =========================================
+         3) BASIC UI SETUP
+      ========================================= */
+      if (year) {
+        year.textContent = new Date().getFullYear();
+      }
+
+      /* =========================================
+         4) QUOTE FORM HELPERS
+      ========================================= */
+      const normalizeInput = (value) => value.replace(/\s+/g, " ").trim();
+
+      const generateQuoteMessage = (input) =>
+        `Hi, I would like a quote for my project: ${input}`;
+
+      const buildSmsUrl = (phone, message) => {
+        const encodedMessage = encodeURIComponent(message);
+        const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+        return isIOS
+          ? `sms:${phone}&body=${encodedMessage}`
+          : `sms:${phone}?body=${encodedMessage}`;
+      };
+
+      const buildEmailUrl = (email, message) => {
+        const subject = encodeURIComponent("Quote Request");
+        const body = encodeURIComponent(message);
+        return `mailto:${email}?subject=${subject}&body=${body}`;
+      };
+
+      const buildWhatsAppUrl = (phone, message) => {
+        return `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+      };
+
+      const setLinkState = (link, href, enabled) => {
+        if (!link) return;
+        link.href = enabled ? href : "#";
+        link.setAttribute("aria-disabled", enabled ? "false" : "true");
+      };
+
+      const resetContactLinks = () => {
+        setLinkState(smsLink, "#", false);
+        setLinkState(emailLink, "#", false);
+        setLinkState(waLink, "#", false);
+      };
+
+      /* =========================================
+         5) QUOTE FORM LOGIC
+      ========================================= */
+      if (form && details && smsLink && emailLink && waLink && status) {
+form.addEventListener("submit", async (event) => {
+  event.preventDefault();
+
+  try {
+    const payload = {
+      name: document.getElementById("name").value,
+      email: document.getElementById("email").value,
+      phone: document.getElementById("phone").value,
+      surface: document.getElementById("surface").value,
+      width: parseFloat(document.getElementById("width").value),
+      height: parseFloat(document.getElementById("height").value),
+      details: details.value
+    };
+
+    const res = await fetch("/api/quote", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(payload)
+    });
+
+    const data = await res.json();
+
+    console.log("API response:", data); // ✅ DEBUG
+
+    displayAIResult(data);
+
+    const message = `
+Hi, I’d like a quote:
+
+Service: ${data.service_type}
+Size: ${data.square_feet} sq ft
+Estimate: $${data.range_low} - $${data.range_high}
+
+Details: ${payload.details}
+`;
+
+    setLinkState(smsLink, buildSmsUrl(BUSINESS_PHONE, message), true);
+    setLinkState(emailLink, buildEmailUrl(BUSINESS_EMAIL, message), true);
+    setLinkState(waLink, buildWhatsAppUrl(BUSINESS_PHONE, message), true);
+
+    status.textContent = "Estimate ready. Choose a contact method to send.";
+
+  } catch (error) {
+    console.error("Error:", error);
+
+    status.textContent = "Something went wrong. Check console.";
+  }
+});
+        details.addEventListener("input", () => {
+          resetContactLinks();
+          status.textContent = "";
+        });
+      }
+
+      /* =========================================
+         6) MOBILE SERVICE CARD INTERACTION
+      ========================================= */
+      const syncServiceCardAccessibility = () => {
+        serviceCards.forEach((card) => {
+          if (mobileQuery.matches) {
+            card.setAttribute("role", "button");
+            card.setAttribute("tabindex", "0");
+            card.setAttribute(
+              "aria-pressed",
+              card.classList.contains("is-image-focus") ? "true" : "false"
+            );
+          } else {
+            card.classList.remove("is-image-focus");
+            card.removeAttribute("role");
+            card.removeAttribute("tabindex");
+            card.removeAttribute("aria-pressed");
+          }
+        });
+      };
+
+      const toggleServiceCard = (card) => {
+        if (!mobileQuery.matches) return;
+
+        const isActive = card.classList.toggle("is-image-focus");
+        card.setAttribute("aria-pressed", isActive ? "true" : "false");
+      };
+
+      serviceCards.forEach((card) => {
+        card.addEventListener("click", () => toggleServiceCard(card));
+
+        card.addEventListener("keydown", (event) => {
+          if (!mobileQuery.matches) return;
+
+          if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            toggleServiceCard(card);
+          }
+        });
+      });
+
+      syncServiceCardAccessibility();
+
+      if (typeof mobileQuery.addEventListener === "function") {
+        mobileQuery.addEventListener("change", syncServiceCardAccessibility);
+      } else if (typeof mobileQuery.addListener === "function") {
+        mobileQuery.addListener(syncServiceCardAccessibility);
+      }
+
+      /* =========================================
+         7) HERO CANVAS ANIMATION
+      ========================================= */
+      if (canvas) {
+        const ctx = canvas.getContext("2d");
+
+        if (ctx) {
+          const img = new Image();
+          img.decoding = "async";
+
+          let progress = 0;
+          let rafId = 0;
+          let resizeTimer = 0;
+
+          const getCanvasSize = () => ({
+            width: canvas.offsetWidth,
+            height: canvas.offsetHeight
+          });
+
+          const resizeCanvas = () => {
+            const dpr = Math.min(window.devicePixelRatio || 1, 2);
+            const { width, height } = getCanvasSize();
+
+            canvas.width = Math.round(width * dpr);
+            canvas.height = Math.round(height * dpr);
+            canvas.style.width = `${width}px`;
+            canvas.style.height = `${height}px`;
+
+            ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+          };
+
+          const getCoverCrop = (imageWidth, imageHeight, boxWidth, boxHeight) => {
+            const imageRatio = imageWidth / imageHeight;
+            const boxRatio = boxWidth / boxHeight;
+
+            let sx = 0;
+            let sy = 0;
+            let sWidth = imageWidth;
+            let sHeight = imageHeight;
+
+            if (imageRatio > boxRatio) {
+              sHeight = imageHeight;
+              sWidth = imageHeight * boxRatio;
+              sx = (imageWidth - sWidth) / 2;
+            } else {
+              sWidth = imageWidth;
+              sHeight = imageWidth / boxRatio;
+              sy = (imageHeight - sHeight) / 2;
+            }
+
+            return { sx, sy, sWidth, sHeight };
+          };
+
+          const clearCanvas = () => {
+            const { width, height } = getCanvasSize();
+            ctx.clearRect(0, 0, width, height);
+          };
+
+          const drawHead = (x, y) => {
+            const w = 10;
+            const h = 40;
+            ctx.fillStyle = "#ff7a33";
+            ctx.fillRect(x - w / 2, y - h / 2, w, h);
+          };
+
+          const drawImageCover = () => {
+            const { width, height } = getCanvasSize();
+            const { sx, sy, sWidth, sHeight } = getCoverCrop(
+              img.width,
+              img.height,
+              width,
+              height
+            );
+
+            ctx.drawImage(
+              img,
+              sx,
+              sy,
+              sWidth,
+              sHeight,
+              0,
+              0,
+              width,
+              height
+            );
+          };
+
+          const drawFinalImage = () => {
+            clearCanvas();
+            drawImageCover();
+          };
+
+          const animateReducedMotion = () => {
+            let brightness = 0.6;
+
+            const step = () => {
+              const { width, height } = getCanvasSize();
+              const { sx, sy, sWidth, sHeight } = getCoverCrop(
+                img.width,
+                img.height,
+                width,
+                height
+              );
+
+              clearCanvas();
+              ctx.filter = `brightness(${brightness})`;
+              ctx.drawImage(img, sx, sy, sWidth, sHeight, 0, 0, width, height);
+              ctx.filter = "none";
+
+              brightness += 0.02;
+
+              if (brightness < 1) {
+                rafId = requestAnimationFrame(step);
+              }
+            };
+
+            step();
+          };
+
+          const animateReveal = () => {
+            const { width, height } = getCanvasSize();
+            const { sx, sy, sWidth, sHeight } = getCoverCrop(
+              img.width,
+              img.height,
+              width,
+              height
+            );
+
+            clearCanvas();
+
+            const revealWidth = Math.min(progress, width);
+
+            if (revealWidth > 0) {
+              const sourceRevealWidth = sWidth * (revealWidth / width);
+              const sourceX = sx + (sWidth - sourceRevealWidth);
+
+              ctx.drawImage(
+                img,
+                sourceX,
+                sy,
+                sourceRevealWidth,
+                sHeight,
+                width - revealWidth,
+                0,
+                revealWidth,
+                height
+              );
+            }
+
+            const unrevealedWidth = Math.max(width - revealWidth, 0);
+            if (unrevealedWidth > 0) {
+              ctx.fillStyle = "#090909";
+              ctx.fillRect(0, 0, unrevealedWidth, height);
+            }
+
+            const headX = width - revealWidth;
+            const t = Date.now() / 600;
+            const headY =
+              (Math.sin(t) * 0.5 + 0.5) * Math.max(height - 40, 1) + 20;
+
+            drawHead(headX, headY);
+
+            progress += 4;
+
+            if (progress <= width) {
+              rafId = requestAnimationFrame(animateReveal);
+            } else {
+              drawFinalImage();
+            }
+          };
+
+          const restartAnimation = () => {
+            cancelAnimationFrame(rafId);
+            progress = 0;
+            resizeCanvas();
+
+            if (!img.complete) return;
+
+            if (reduceMotionQuery.matches) {
+              animateReducedMotion();
+            } else {
+              animateReveal();
+            }
+          };
+
+          window.addEventListener("resize", () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(restartAnimation, 150);
+          });
+
+          if (typeof reduceMotionQuery.addEventListener === "function") {
+            reduceMotionQuery.addEventListener("change", restartAnimation);
+          } else if (typeof reduceMotionQuery.addListener === "function") {
+            reduceMotionQuery.addListener(restartAnimation);
+          }
+
+          img.onload = restartAnimation;
+          img.src = HERO_IMAGE_SRC;
+        }
+      }
+    })();
+function displayAIResult(data) {
+  const el = document.getElementById("aiResult");
+
+  el.innerHTML = `
+    <div class="card">
+      <h3>Project Summary</h3>
+      <p><strong>Service:</strong> ${data.service_type}</p>
+      <p><strong>Estimated Size:</strong> ${data.square_feet} sq ft</p>
+      <p><strong>Recommended Package:</strong> ${data.recommended_package}</p>
+      <p><strong>Estimated Range:</strong> $${data.range_low} - $${data.range_high}</p>
+      <p><strong>Missing Info:</strong> ${data.missing_information.join(", ")}</p>
+    </div>
+  `;
+}
+  </script>
+</body>
+</html>
