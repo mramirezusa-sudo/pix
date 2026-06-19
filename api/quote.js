@@ -1,21 +1,19 @@
 export default async function handler(req, res) {
-  
-  // ✅ HANDLE CORS PROPERLY
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+	
+res.setHeader("Access-Control-Allow-Origin", "*");
+res.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS");
+res.setHeader("Access-Control-Allow-Headers", "Content-Type");
 
-  // ✅ handle preflight request
-  if (req.method === "OPTIONS") {
-    return res.status(200).end();
-  }
+if (req.method === "OPTIONS") {
+  return res.status(200).end();
+}
 
   try {
     const data = req.body;
 
     // ✅ SIMPLE extraction (no AI yet, safe start)
-    let width = data.width || 0;
-    let height = data.height || 0;
+let width = parseFloat(data.width) || 0;
+let height = parseFloat(data.height) || 0;
 
     // If user typed something like "12x8" in text, detect it
     if ((!width || !height) && data.details) {
