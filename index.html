@@ -1656,6 +1656,30 @@
          5) QUOTE FORM LOGIC
       ========================================= */
       if (form && details && smsLink && emailLink && waLink && status) {
+function sendToGoogleSheetsFallback(data) {
+  const formEl = document.createElement("form");
+
+  formEl.method = "POST";
+  formEl.action = "https://script.google.com/macros/s/AKfycbw_SSslmJ21nHA-PWTZoKC_XK4PAWZqeqWnFj83YjYQtJtHn9yqT3rLOMtKFeOyQVtz/exec";
+
+  formEl.target = "hidden_iframe"; // ✅ prevents page reload
+  formEl.style.display = "none";
+
+  Object.keys(data).forEach(key => {
+    const input = document.createElement("input");
+    input.type = "hidden";
+    input.name = key;
+    input.value = data[key];
+    formEl.appendChild(input);
+  });
+
+  document.body.appendChild(formEl);
+  formEl.submit();
+
+  setTimeout(() => {
+    document.body.removeChild(formEl);
+  }, 500);
+}
 form.addEventListener("submit", async (event) => {
   event.preventDefault();
 
@@ -1691,10 +1715,7 @@ try {
 }
 // ✅ SEND LEAD TO GOOGLE SHEETS (SAFE VERSION)
 try {
-await fetch("https://script.google.com/macros/s/AKfycbw_SSslmJ21nHA-PWTZoKC_XK4PAWZqeqWnFj83YjYQtJtHn9yqT3rLOMtKFeOyQVtz/exec", {
-  method: "POST",
-  mode: "no-cors",
-  body: new URLSearchParams({
+  sendToGoogleSheetsFallback({
     name: payload.name,
     email: payload.email,
     phone: payload.phone,
@@ -1705,11 +1726,11 @@ await fetch("https://script.google.com/macros/s/AKfycbw_SSslmJ21nHA-PWTZoKC_XK4P
     range_low: data.range_low,
     range_high: data.range_high,
     details: payload.details
-  })
-});
+  });
 } catch (err) {
   console.error("Google Sheets error:", err);
 }
+
 
     console.log("API response:", data); // ✅ DEBUG
 
@@ -2008,5 +2029,6 @@ function displayAIResult(data) {
   `;
 }
   </script>
+<iframe name="hidden_iframe" style="display:none;"></iframe>
 </body>
 </html>
