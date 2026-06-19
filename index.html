@@ -1680,6 +1680,25 @@ const res = await fetch("https://pixelwallabs.vercel.app/api/quote", {
 
 
     const data = await res.json();
+// ✅ SEND LEAD TO GOOGLE SHEETS
+await fetch("https://script.google.com/macros/s/AKfycbw_SSslmJ21nHA-PWTZoKC_XK4PAWZqeqWnFj83YjYQtJtHn9yqT3rLOMtKFeOyQVtz/exec", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify({
+    name: payload.name,
+    email: payload.email,
+    phone: payload.phone,
+    surface: payload.surface,
+    width: payload.width,
+    height: payload.height,
+    square_feet: data.square_feet,
+    range_low: data.range_low,
+    range_high: data.range_high,
+    details: payload.details
+  })
+});
 
     console.log("API response:", data); // ✅ DEBUG
 
