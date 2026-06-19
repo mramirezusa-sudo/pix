@@ -1670,19 +1670,25 @@ height: parseFloat(document.getElementById("height").value) || 0,
       details: details.value
     };
 
-const res = await fetch("https://pixelwallabs.vercel.app/api/quote", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json"
-  },
-  body: JSON.stringify(payload)
-});
+let data;
 
-if (!res.ok) {
-  throw new Error("API request failed");
+try {
+  const res = await fetch("https://pixelwallabs.vercel.app/api/quote", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(payload)
+  });
+
+  if (!res.ok) throw new Error("API request failed");
+
+  data = await res.json();
+} catch (err) {
+  console.error("Vercel API error:", err);
+  status.textContent = "Estimate unavailable. Try again.";
+  return;
 }
-
-const data = await res.json();
 // ✅ SEND LEAD TO GOOGLE SHEETS (SAFE VERSION)
 try {
 await fetch("https://script.google.com/macros/s/AKfycbw_SSslmJ21nHA-PWTZoKC_XK4PAWZqeqWnFj83YjYQtJtHn9yqT3rLOMtKFeOyQVtz/exec", {
