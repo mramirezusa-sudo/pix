@@ -1665,8 +1665,8 @@ form.addEventListener("submit", async (event) => {
       email: document.getElementById("email").value,
       phone: document.getElementById("phone").value,
       surface: document.getElementById("surface").value,
-      width: parseFloat(document.getElementById("width").value),
-      height: parseFloat(document.getElementById("height").value),
+width: parseFloat(document.getElementById("width").value) || 0,
+height: parseFloat(document.getElementById("height").value) || 0,
       details: details.value
     };
 
@@ -1678,27 +1678,34 @@ const res = await fetch("https://pixelwallabs.vercel.app/api/quote", {
   body: JSON.stringify(payload)
 });
 
+if (!res.ok) {
+  throw new Error("API request failed");
+}
 
-    const data = await res.json();
-// ✅ SEND LEAD TO GOOGLE SHEETS
-await fetch("https://script.google.com/macros/s/AKfycbw_SSslmJ21nHA-PWTZoKC_XK4PAWZqeqWnFj83YjYQtJtHn9yqT3rLOMtKFeOyQVtz/exec", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json"
-  },
-  body: JSON.stringify({
-    name: payload.name,
-    email: payload.email,
-    phone: payload.phone,
-    surface: payload.surface,
-    width: payload.width,
-    height: payload.height,
-    square_feet: data.square_feet,
-    range_low: data.range_low,
-    range_high: data.range_high,
-    details: payload.details
-  })
-});
+const data = await res.json();
+// ✅ SEND LEAD TO GOOGLE SHEETS (SAFE VERSION)
+try {
+  await fetch("https://script.google.com/macros/s/AKfycbw_SSslmJ21nHA-PWTZoKC_XK4PAWZqeqWnFj83YjYQtJtHn9yqT3rLOMtKFeOyQVtz/exec", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      name: payload.name,
+      email: payload.email,
+      phone: payload.phone,
+      surface: payload.surface,
+      width: payload.width,
+      height: payload.height,
+      square_feet: data.square_feet,
+      range_low: data.range_low,
+      range_high: data.range_high,
+      details: payload.details
+    })
+  });
+} catch (err) {
+  console.error("Google Sheets error:", err);
+}
 
     console.log("API response:", data); // ✅ DEBUG
 
