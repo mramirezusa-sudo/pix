@@ -1685,24 +1685,22 @@ if (!res.ok) {
 const data = await res.json();
 // ✅ SEND LEAD TO GOOGLE SHEETS (SAFE VERSION)
 try {
-  await fetch("https://script.google.com/macros/s/AKfycbw_SSslmJ21nHA-PWTZoKC_XK4PAWZqeqWnFj83YjYQtJtHn9yqT3rLOMtKFeOyQVtz/exec", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      name: payload.name,
-      email: payload.email,
-      phone: payload.phone,
-      surface: payload.surface,
-      width: payload.width,
-      height: payload.height,
-      square_feet: data.square_feet,
-      range_low: data.range_low,
-      range_high: data.range_high,
-      details: payload.details
-    })
-  });
+await fetch("https://script.google.com/macros/s/AKfycbw_SSslmJ21nHA-PWTZoKC_XK4PAWZqeqWnFj83YjYQtJtHn9yqT3rLOMtKFeOyQVtz/exec", {
+  method: "POST",
+  mode: "no-cors",
+  body: new URLSearchParams({
+    name: payload.name,
+    email: payload.email,
+    phone: payload.phone,
+    surface: payload.surface,
+    width: payload.width,
+    height: payload.height,
+    square_feet: data.square_feet,
+    range_low: data.range_low,
+    range_high: data.range_high,
+    details: payload.details
+  })
+});
 } catch (err) {
   console.error("Google Sheets error:", err);
 }
