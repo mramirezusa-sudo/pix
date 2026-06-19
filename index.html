@@ -1682,6 +1682,8 @@ function sendToGoogleSheetsFallback(data) {
 }
 form.addEventListener("submit", async (event) => {
   event.preventDefault();
+  
+  status.textContent = "Calculating estimate...";
 
   try {
     const payload = {
@@ -1693,6 +1695,11 @@ width: parseFloat(document.getElementById("width").value) || 0,
 height: parseFloat(document.getElementById("height").value) || 0,
       details: details.value
     };
+
+if (!payload.name || !payload.email || !payload.details) {
+  status.textContent = "Please fill in required fields.";
+  return;
+}
 
 let data;
 
@@ -1755,7 +1762,7 @@ Details: ${payload.details}
   } catch (error) {
     console.error("Error:", error);
 
-    status.textContent = "Something went wrong. Check console.";
+    status.textContent = "Unable to process request. Please try again.";
   }
 });
         details.addEventListener("input", () => {
@@ -2024,7 +2031,7 @@ function displayAIResult(data) {
       <p><strong>Estimated Size:</strong> ${data.square_feet} sq ft</p>
       <p><strong>Recommended Package:</strong> ${data.recommended_package}</p>
       <p><strong>Estimated Range:</strong> $${data.range_low} - $${data.range_high}</p>
-      <p><strong>Missing Info:</strong> ${data.missing_information.join(", ")}</p>
+      <p><strong>Missing Info:</strong> ${data.missing_information?.join(", ") || "None"}</p>
     </div>
   `;
 }
