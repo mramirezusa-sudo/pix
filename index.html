@@ -1622,6 +1622,16 @@ section {
 
       const generateQuoteMessage = (input) =>
         `Hi, I would like a quote for my project: ${input}`;
+		
+// ✅ CONVERT IMAGE TO BASE64 (IMPORTANT)
+async function convertToBase64(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = reject;
+  });
+}
 
       const buildSmsUrl = (phone, message) => {
         const encodedMessage = encodeURIComponent(message);
@@ -1663,7 +1673,7 @@ function sendToGoogleSheetsFallback(data) {
 
   formEl.method = "POST";
   formEl.action = "https://script.google.com/macros/s/AKfycbw_SSslmJ21nHA-PWTZoKC_XK4PAWZqeqWnFj83YjYQtJtHn9yqT3rLOMtKFeOyQVtz/exec";
-
+  
   formEl.target = "hidden_iframe"; // ✅ prevents page reload
   formEl.style.display = "none";
 
@@ -1703,6 +1713,11 @@ const fileInput = document.getElementById("image");
 const imageFile = fileInput && fileInput.files.length > 0
   ? fileInput.files[0]
   : null;
+let imageBase64 = "";
+
+if (imageFile) {
+  imageBase64 = await convertToBase64(imageFile);
+}
 
 if (!payload.name || !payload.email || !payload.details) {
   status.textContent = "Please fill in required fields.";
@@ -1730,19 +1745,20 @@ try {
 }
 // ✅ SEND LEAD TO GOOGLE SHEETS (SAFE VERSION)
 try {
-  sendToGoogleSheetsFallback({
-    name: payload.name,
-    email: payload.email,
-    phone: payload.phone,
-    surface: payload.surface,
-    width: payload.width,
-    height: payload.height,
-    square_feet: data.square_feet,
-    range_low: data.range_low,
-    range_high: data.range_high,
-    details: payload.details,
-	image_name: imageFile ? imageFile.name : "No image",
-  });
+sendToGoogleSheetsFallback({
+  name: payload.name,
+  email: payload.email,
+  phone: payload.phone,
+  surface: payload.surface,
+  width: payload.width,
+  height: payload.height,
+  square_feet: data.square_feet,
+  range_low: data.range_low,
+  range_high: data.range_high,
+  details: payload.details,
+  image_name: imageFile ? imageFile.name : "No image",
+  image_base64: imageBase64
+});
 } catch (err) {
   console.error("Google Sheets error:", err);
 }
