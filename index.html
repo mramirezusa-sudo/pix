@@ -173,28 +173,15 @@
 
     section {
       padding: var(--section-pad) 0;
-      scroll-margin-top: calc(var(--nav-height) + 18px);
+      scroll-margin-top: calc(var(--nav-height) + 32px);
     }
 
-    #services {
-      padding-top: 22px;
-      padding-bottom: 72px;
-    }
-
-    #pricing {
-      padding-top: 64px;
-      padding-bottom: 88px;
-    }
-
-    #process {
-      padding-top: 84px;
-      padding-bottom: 92px;
-    }
-
-    #quote {
-      padding-top: 24px;
-      padding-bottom: 96px;
-    }
+#services,
+#pricing,
+#process,
+#quote {
+  padding-top: 40px; /* ✅ consistent spacing */
+}
 
     /* =========================================
        4) ACCESSIBILITY
@@ -1019,6 +1006,10 @@
       .nav-links {
         gap: 14px;
       }
+
+  section {
+    scroll-margin-top: calc(var(--nav-height) + 36px);
+  }
 
       .hero {
         padding-top: 0;
