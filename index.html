@@ -1497,6 +1497,10 @@ section {
     <input type="number" id="height" />
   </div>
 </div>
+<div>
+  <label class="form-label">Upload Photo (optional)</label>
+  <input type="file" id="image" accept="image/*" />
+</div>
             <label class="form-label" for="details">Project Details</label>
             <p id="details-help" class="form-help">
               Include the surface type, approximate size, location, and design idea.
@@ -1694,6 +1698,12 @@ height: parseFloat(document.getElementById("height").value) || 0,
       details: details.value
     };
 
+// ✅ GET IMAGE FILE (SAFE - OPTIONAL)
+const fileInput = document.getElementById("image");
+const imageFile = fileInput && fileInput.files.length > 0
+  ? fileInput.files[0]
+  : null;
+
 if (!payload.name || !payload.email || !payload.details) {
   status.textContent = "Please fill in required fields.";
   return;
@@ -1730,7 +1740,8 @@ try {
     square_feet: data.square_feet,
     range_low: data.range_low,
     range_high: data.range_high,
-    details: payload.details
+    details: payload.details,
+	image_name: imageFile ? imageFile.name : "No image",
   });
 } catch (err) {
   console.error("Google Sheets error:", err);
@@ -1741,12 +1752,13 @@ try {
 
     displayAIResult(data);
 
-    const message = `
+const message = `
 Hi, I’d like a quote:
 
 Service: ${data.service_type}
 Size: ${data.square_feet} sq ft
 Estimate: $${data.range_low} - $${data.range_high}
+Image: ${imageFile ? "Attached separately" : "None"}
 
 Details: ${payload.details}
 `;
